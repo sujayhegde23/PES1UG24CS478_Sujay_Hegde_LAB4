@@ -22,10 +22,6 @@ class Target:
         return self.base_radius - (self.base_radius - self.min_radius) * t
 
     def contains_point(self, x, y):
-        # NOTE: hit-testing always uses the target's starting radius
-        # (base_radius), not its current, shrunken on-screen radius
-        # (visual_radius()). The circle drawn in render() shrinks as
-        # the target ages, but the clickable area never does, so a
-        # late click well outside the small visible circle can still
-        # register as a hit. See Task 1 in the README.
-        return math.hypot(self.x - x, self.y - y) <= self.base_radius
+        # Hit-test against the same radius used to draw the target, so
+        # the clickable area shrinks along with the visible circle.
+        return math.hypot(self.x - x, self.y - y) <= self.visual_radius()

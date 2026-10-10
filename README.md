@@ -1,100 +1,83 @@
 # Target Aim Trainer
 
-This project is a terminal-based target aim trainer using **Pygame**. It introduces students to interactive game design using object-oriented principles and real-time graphical rendering.
+A Pygame aim trainer that uses shrinking targets, score tracking, timed rounds, difficulty selection, and sound feedback.
 
----
+## Features
 
-## What’s Provided
+- A target spawns at a random position and shrinks while it remains on screen.
+- Circular hit detection always uses the same current radius as the visible target.
+- Clicking the target scores a hit and spawns a new target immediately.
+- Clicking outside the target, or allowing it to expire, records a miss.
+- Score, remaining time, and live accuracy are displayed during each round.
+- Each round lasts 30 seconds.
+- A Game Over screen displays the final score and accuracy.
+- Players can start a new round at a selected difficulty or exit the game.
+- Generated sound effects play for hits, misses, timeouts, and the end of a round.
 
-A partially working version of an aim trainer with:
-
-- A single target that spawns at a random position and visually shrinks the longer it's on screen
-- Click-to-hit scoring, with a timed-out target counting as a miss
-- A countdown timer, score, and accuracy display
-
-You are expected to **analyze**, **interact with an AI assistant**, and **complete/fix** the game to make it fully functional.
-
-### **Use an LLM (e.g. ChatGPT or Claude) as your debugging and pair-programming partner for this lab.**
-
----
+The sound effects are generated at runtime, so no audio files need to be downloaded. If an audio device is unavailable, the game continues silently.
 
 ## Getting Started
 
-### Setup
+1. Install Python 3.10 or later.
+2. Install the dependency:
 
-1. Clone the repo or download the project folder.
-2. Make sure you have Python 3.10+ installed.
-3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-```bash
-pip install -r requirements.txt
-```
+3. Run the game:
 
-4. Run the game:
+   ```bash
+   python main.py
+   ```
 
-```bash
-python main.py
-```
+## Controls
 
----
+- **Left-click:** Hit the visible target. Clicking anywhere else counts as a miss.
+- **Game Over screen:** Press `1` for Easy, `2` for Medium, or `3` for Hard to play again.
+- **Exit:** Press `Esc` on the Game Over screen or close the window.
 
+## Difficulty Settings
 
-## Tasks to Complete
+| Difficulty | Starting radius | Minimum radius | Target lifespan |
+| --- | ---: | ---: | ---: |
+| Easy | 48 px | 18 px | 150 frames |
+| Medium | 40 px | 12 px | 90 frames |
+| Hard | 32 px | 9 px | 60 frames |
 
-Each task must be completed using an iterative process involving LLM suggestions and your critical code review.
+## Completed Tasks
 
 ### Task 1: Refine Collision Detection
 
-> Late clicks well outside the small, shrunken target circle can still register as a hit. Investigate and enhance click accuracy so the clickable area always matches what's actually drawn on screen.
+`Target.contains_point()` uses the target's current `visual_radius()`. The clickable area therefore shrinks exactly with the circle drawn on screen; late clicks outside the visible circle are misses.
 
 ### Task 2: Implement Game Over Condition
 
-> Add a screen that displays the final score and accuracy once the round timer reaches zero, then gracefully waits for input instead of just printing to the console.
-
-
+When the timer reaches zero, the round stops and displays a Game Over screen with the final score and accuracy. The game waits on this screen for player input instead of printing results to the console.
 
 ### Task 3: Add Replay Option
 
-> After Game Over, allow the user to play again by choosing a difficulty (Easy, Medium, or Hard target lifespan/size), or exit.
-
-
+The Game Over screen offers Easy, Medium, and Hard replay choices. Selecting one starts a fresh 30-second round and resets the timer, score, hit count, miss count, and target.
 
 ### Task 4: Add Sound Feedback
 
-> Add basic sound effects for a successful hit, a miss (including a timed-out target), and the round ending.
-
-
-
----
-
-## Expected Behavior
-
-- A single target appears at a random position and shrinks the longer it stays on screen
-- Clicking the target scores a hit and immediately spawns a new one elsewhere
-- Clicking anywhere else counts as a miss; letting a target's timer run out also counts as a miss
-- A countdown timer, score, and live accuracy percentage are visible at all times
-- The round ends when the timer reaches zero
-
----
+The game plays a high tone for successful hits, a low tone for missed clicks and expired targets, and a longer tone when the round ends.
 
 ## Folder Structure
 
-```
-target-aim-trainer-main/
+```text
+target-aim-trainer/
 ├── main.py
 ├── requirements.txt
 ├── game/
 │   ├── game_engine.py
+│   ├── sound_effects.py
 │   └── target.py
 └── README.md
 ```
 
----
-
 ## Submission Checklist
 
-Submission is only the following three things:
-
-- [] A 10-second video of gameplay **before** your changes, showing the bug/broken behavior
-- [] A 10-second video of gameplay **after** your changes, showing the bug fixed and the new features working
-- [] The Chat/LLM used page link, with the complete chat history
+- [ ] A 10-second gameplay recording from before the changes, showing the original bug or incomplete behavior.
+- [ ] A 10-second gameplay recording after the changes, showing corrected collision detection, Game Over, replay, and sound feedback.
+- [ ] The chat/LLM page link containing the complete conversation history.
