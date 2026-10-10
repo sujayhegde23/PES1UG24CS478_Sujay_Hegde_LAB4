@@ -78,5 +78,5 @@ target-aim-trainer/
 
 ## Video Demo
 
-- [Before changes — raw video](https://github.com/SETAPESU26/47_target-aim-trainer/raw/refs/heads/main/videos/before.mp4)
-- [After changes — raw video](https://github.com/SETAPESU26/47_target-aim-trainer/raw/refs/heads/main/videos/after.mp4)
+- [Before changes — raw video](https://github.com/SETAPESU26/47_target-aim-trainer/raw/refs/heads/main/videos)
+- [After changes — raw video](https://github.com/SETAPESU26/47_target-aim-trainer/raw/refs/heads/main/videos)
