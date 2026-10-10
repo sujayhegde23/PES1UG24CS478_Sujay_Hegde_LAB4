@@ -76,8 +76,7 @@ target-aim-trainer/
 └── README.md
 ```
 
-## Submission Checklist
+## Video Demo
 
-- [ ] A 10-second gameplay recording from before the changes, showing the original bug or incomplete behavior.
-- [ ] A 10-second gameplay recording after the changes, showing corrected collision detection, Game Over, replay, and sound feedback.
-- [ ] The chat/LLM page link containing the complete conversation history.
+- [Before changes — raw video](https://github.com/SETAPESU26/47_target-aim-trainer/raw/refs/heads/main/videos/before.mp4)
+- [After changes — raw video](https://github.com/SETAPESU26/47_target-aim-trainer/raw/refs/heads/main/videos/after.mp4)
